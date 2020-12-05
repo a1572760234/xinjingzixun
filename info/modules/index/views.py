@@ -8,4 +8,4 @@ def index():
 
 @index_bp.route('/favicon.ico')
 def get_favicon():
-    return current_app.sent_static_file('/news/favicon.ico')
+    return current_app.send_static_file('/news/favicon.ico')
