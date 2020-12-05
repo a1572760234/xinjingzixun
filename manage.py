@@ -1,12 +1,18 @@
-from flask import Flask
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
+from info import db, create_app
+from info import models
 
-app = Flask(__name__)
+app = create_app('dev')
+# Flask-script
+manager = Manager(app)
+# 数据库迁移
+Migrate(app, db)
+manager.add_command('db', MigrateCommand)
 
 
-@app.route('/')
-def index():
-    return 'Index'
+
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8005)
+    manager.run()
