@@ -27,6 +27,7 @@ def register_bp(app:Flask):
     from info.modules.index import index_bp
     from info.modules.passport import passport_bp
     app.register_blueprint(index_bp)
+    app.register_blueprint(passport_bp)
 
 def create_app(config_type):
 

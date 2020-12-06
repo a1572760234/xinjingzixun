@@ -14,7 +14,7 @@ class ImageCodeResource(Resource):
         # 获取当前验证码编号
         code_id = args.get('code_id')
         # 生成验证码
-        name, text, image = captcha()
+        text, image = captcha.generate_captcha()
         # 保存验证码生成的内容
         try:
             redis_client.setex('ImageCode'+code_id, constants.IMAGE_CODE_REDIS_EXPIRES, text)
