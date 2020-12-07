@@ -38,10 +38,10 @@ def create_app(config_type):
     db.init_app(app)
     # 配置redis
     global redis_client
-    redis_client = redis.StrictRedis(host=app.config['REDIS_HOST'], port=app.config['REDIS_PORT'],
-                                     decode_responses=True)
+    # 不配置解码，需要解码的对象再使用decode()
+    redis_client = redis.StrictRedis(host=app.config['REDIS_HOST'], port=app.config['REDIS_PORT'])
     # 开启csrf保护
-    CSRFProtect(app)
+    # CSRFProtect(app)
     # 设置session保存位置
     Session(app)
     # 设置日志
